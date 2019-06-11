@@ -54,11 +54,11 @@ staging_songs_table_create = ("""CREATE TABLE IF NOT EXISTS staging_songs(
 
 songplay_table_create = ("""CREATE TABLE IF NOT EXISTS songplay(
                             songplay_id         INT IDENTITY(1,1) PRIMARY KEY, 
-                            start_time          BIGINT, 
-                            user_id             INTEGER, 
+                            start_time          BIGINT NOT NULL , 
+                            user_id             INTEGER NOT NULL , 
                             level               VARCHAR(1000), 
-                            song_id             VARCHAR(1000), 
-                            artist_id           VARCHAR(1000), 
+                            song_id             VARCHAR(1000) NOT NULL , 
+                            artist_id           VARCHAR(1000) NOT NULL , 
                             session_id          INTEGER, 
                             location            VARCHAR(1000), 
                             user_agent          VARCHAR(1000)
@@ -76,7 +76,7 @@ user_table_create = ("""CREATE TABLE IF NOT EXISTS users(
 song_table_create = ("""CREATE TABLE IF NOT EXISTS song(
                         song_id         VARCHAR(1000) PRIMARY KEY, 
                         title           VARCHAR(1000), 
-                        artist_id       VARCHAR(1000), 
+                        artist_id       VARCHAR(1000) NOT NULL, 
                         year            INTEGER, 
                         duration        FLOAT
 )
@@ -97,17 +97,8 @@ time_table_create = ("""CREATE TABLE IF NOT EXISTS time(
                             week        INTEGER, 
                             month       INTEGER,
                             year        INTEGER,
-                            weekday     BOOLEAN
+                            weekday     INTEGER
 )
-""")
-
-time_table_create = ("""CREATE TABLE IF NOT EXISTS time (start_time DATE PRIMARY KEY, \
-                        hour      INT, \
-                        day       INT, \
-                        week      INT, \
-                        month     INT, \
-                        year      INT, \
-                        weekday   INT);
 """)
 
 # STAGING TABLES
